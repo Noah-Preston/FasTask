@@ -27,11 +27,12 @@ export default class ListController {
   addList(event) {
     event.preventDefault();
     let formData = event.target;
-    let newList = {
+    let newListObj = {
       listName: formData.listName.value
     }
-    console.log(newList);
-    _listService.addList(newList);
+    console.log(newListObj);
+    _listService.addList(newListObj);
+    formData.reset();
     _drawLists();
   }
 
@@ -46,13 +47,32 @@ export default class ListController {
     _drawLists();
   }
 
-  deleteList(id) {
-    _listService.deleteList(id)
-    _drawLists()
+  deleteList(listId) {
+    // @ts-ignore
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.value) {
+        _listService.deleteList(listId)
+        _drawLists()
+        // @ts-ignore
+        Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )
+      }
+    })
   }
 
-  deleteTask(id) {
-    _listService.deleteTask(id)
+  deleteTask(taskId, listId) {
+    _listService.deleteTask(listId, taskId)
     _drawLists()
   }
 

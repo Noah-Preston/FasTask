@@ -1,6 +1,6 @@
 import List from "../Models/List.js";
-import _store from "../store.js";
 import Task from "../Models/Tasks.js";
+import _store from "../store.js";
 //Public
 class ListService {
   //TODO  Here is where we handle all of our business logic,
@@ -11,21 +11,23 @@ class ListService {
 
   }
 
-  addList(newList) {
-    newList = new List(newList)
+  addList(newListObj) {
+    console.log(_store.State.lists);
+    let newList = new List(newListObj)
     _store.State.lists.push(newList)
     _store.saveState()
   }
 
-  addTask(newTask, listId) {
-    newTask = new Task(newTask);
+  addTask(newTaskObj, listId) {
+    console.log(_store.State.lists);
+    let newTask = new Task(newTaskObj);
     let list = _store.State.lists.find(list => list.id === listId)
     //tasks are stored on "list"
     list.tasks.push(newTask)
     _store.saveState()
   }
-  deleteList(id) {
-    let lists = _store.State.lists.filter(list => list.id !== id)
+  deleteList(listId) {
+    let lists = _store.State.lists.filter(list => list.id !== listId)
     _store.State.lists = lists
     _store.saveState()
   }
@@ -35,7 +37,7 @@ class ListService {
     //let tasks = list.tasks
     let tasks = list.tasks.filter(task => task.id !== taskId)
     //list.tasks = list
-    _store.State.lists = list
+    list.tasks = tasks
     _store.saveState()
   }
 }

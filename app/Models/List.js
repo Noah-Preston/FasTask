@@ -1,5 +1,5 @@
 import { generateId } from "../utils.js";
-import Task from "../Models/Tasks.js";
+import Task from '../Models/Tasks.js'
 
 export default class List {
   constructor(data) {
@@ -12,11 +12,11 @@ export default class List {
   //For starting out, your tasks may be strings alone, but later you may wish to turn them into full objects, that will be up to you
 
   get Tasks() {
-    let template = ""
+    let template = "";
     this.tasks.forEach(task => {
-      template += task.Template
+      template += task.Template + `<button onclick="app.listController.deleteTask( '${task.id}' ,'${this.id}')" class="btn btn-danger">X</button>`
     })
-    return template
+    return template;
   }
 
   get Template() {

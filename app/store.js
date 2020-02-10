@@ -3,8 +3,7 @@ import Task from "./Models/Tasks.js";
 
 let _state = {
   /** @type {List[]} */
-  lists: [],
-  tasks: []
+  lists: []
 };
 
 //NOTE You should not need to change the code from this point down
