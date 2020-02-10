@@ -20,6 +20,7 @@ class ListService {
   addTask(newTask, listId) {
     newTask = new Task(newTask);
     let list = _store.State.lists.find(list => list.id === listId)
+    //tasks are stored on "list"
     list.tasks.push(newTask)
     _store.saveState()
   }
@@ -31,6 +32,7 @@ class ListService {
 
   deleteTask(listId, taskId) {
     let list = _store.State.lists.find(list => list.id === listId)
+    //let tasks = list.tasks
     list.tasks.filter(task => task.id !== taskId)
     list.tasks = list
     _store.saveState()
