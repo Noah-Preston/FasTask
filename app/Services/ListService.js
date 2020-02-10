@@ -33,8 +33,8 @@ class ListService {
   deleteTask(listId, taskId) {
     let list = _store.State.lists.find(list => list.id === listId)
     //let tasks = list.tasks
-    list.tasks.filter(task => task.id !== taskId)
-    list.tasks = list
+    let tasks = list.tasks.filter(task => task.id !== taskId)
+    //list.tasks = list
     _store.saveState()
   }
 }
