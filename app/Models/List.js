@@ -21,14 +21,14 @@ export default class List {
 
   get Template() {
     return `
-    <div className="col-4">
-      <h1>${this.listName}</h1>
-      <button onclick="app.listController.deleteList('${this.id}')" class="btn btn-danger">X</button>
+    <div className="col-6">
+      <h1>${this.listName} <button onclick="app.listController.deleteList('${this.id}')" class="btn btn-danger">X</button></h1>
+      
       <h4>Tasks: ${this.Tasks}</h4>
       <form onsubmit="app.listController.addTask(event,'${this.id}')">
       <div class = "form-group">
-        <input type="text" name="taskName" class="form-control" placeholder="new task here" aria-describedby="helpId">
-        <button class= "btn btn-info" type = "submit">Add Task</button>
+        <p class = "py-2"><input type="text" name="taskName" class="form-control" placeholder="new task here" aria-describedby="helpId"></p>
+        <button class= "btn btn-info " type = "submit">Add Task</button>
       </form>
       </div>
     </div>

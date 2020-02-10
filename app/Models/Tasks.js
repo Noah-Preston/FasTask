@@ -9,8 +9,8 @@ export default class Task {
   get Template() {
     return `
     <div class="col-6">
-    <h2>${this.taskName}</h2>
-    <button onclick="app.listController.deleteTask('${this.id}')" class="btn btn-danger">X</button>
+    <h5>${this.taskName} <button onclick="app.listController.deleteTask('${this.id}')" class="btn btn-danger">X</button></h5>
+    
     </div>
     `
   }
