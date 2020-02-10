@@ -35,6 +35,7 @@ class ListService {
     //let tasks = list.tasks
     let tasks = list.tasks.filter(task => task.id !== taskId)
     //list.tasks = list
+    _store.State.lists = list
     _store.saveState()
   }
 }
