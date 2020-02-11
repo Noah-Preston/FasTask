@@ -1,17 +1,11 @@
 import _listService from "../Services/ListService.js";
 import _store from "../store.js"
-import list from "../Models/List.js"
-import task from "../Models/Tasks.js"
 
 //TODO Don't forget to render to the screen after every data change.
 function _drawLists() {
   let lists = _store.State.lists
   let listElem = document.getElementById("listRow")
   let template = ""
-
-  let tasks = _store.State.tasks
-  let taskElem = document.getElementById("taskName")
-
   lists.forEach(list => {
     template += list.Template
   })
@@ -72,8 +66,27 @@ export default class ListController {
   }
 
   deleteTask(taskId, listId) {
-    _listService.deleteTask(listId, taskId)
-    _drawLists()
+    // @ts-ignore
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.value) {
+        _listService.deleteTask(listId, taskId)
+        _drawLists()
+        // @ts-ignore
+        Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )
+      }
+    })
   }
 
 
